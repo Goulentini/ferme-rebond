@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#050f05">
+<meta name="theme-color" content="#1a0a2e">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Ferme du Rebond">
@@ -11,279 +11,169 @@
 <title>Ferme du Rebond</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:#050f05;color:#00ff41;font-family:'VT323',monospace;min-height:100vh}
-.ps2{font-family:'Press Start 2P',monospace}
-.btn{font-family:'Press Start 2P',monospace;font-size:.38rem;padding:5px 9px;background:#0a1a0a;color:#00ff41;border:2px solid #00ff41;box-shadow:2px 2px 0 #001a00;cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;letter-spacing:.03em}
-.btn:active{transform:translate(2px,2px);box-shadow:none}
-.btn.r{color:#ff2222;border-color:#ff2222;box-shadow:2px 2px 0 #1a0000}
-.btn.o{color:#ff8800;border-color:#ff8800;box-shadow:2px 2px 0 #1a0800}
-.btn.b{color:#00aaff;border-color:#00aaff;box-shadow:2px 2px 0 #001133}
-.btn.y{color:#ffdd00;border-color:#ffdd00;box-shadow:2px 2px 0 #1a1500}
-.btn.tl{color:#00ff99;border-color:#00ff99;box-shadow:2px 2px 0 #001a0a}
-.btn.sm{font-size:.32rem;padding:4px 6px}
-.btn.lg{font-size:.42rem;padding:8px 12px;width:100%;justify-content:center}
-input,select{background:#0f200f;color:#00ff41;border:2px solid #1a3a1a;font-family:'VT323',monospace;font-size:1.1rem;padding:4px 8px;outline:none;width:100%}
-input:focus,select:focus{border-color:#00ff41}
-select option{background:#0a1a0a}
-.pbg{border:2px solid #00ff41;box-shadow:2px 2px 0 #001a00}
-.pbr{border:2px solid #ff2222;box-shadow:2px 2px 0 #1a0000}
-.pbo{border:2px solid #ff8800;box-shadow:2px 2px 0 #1a0800}
-.modal-bg{position:fixed;inset:0;background:rgba(0,5,0,.96);z-index:100;overflow-y:auto;padding:12px}
-.scan{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.05) 3px,rgba(0,0,0,.05) 4px)}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#050f05}::-webkit-scrollbar-thumb{background:#003311}
-@keyframes bounce{0%,80%,100%{transform:scaleY(.3)}40%{transform:scaleY(1)}}
+:root{--bg:#1a0a2e;--bg2:#2d1b4e;--bg3:#3d2860;--gold:#ffe000;--cyan:#00e5ff;--pink:#ff4af0;--grn:#39ff14;--red:#ff3333;--org:#ff8c00;--wht:#f0f0ff;--dim:#9988bb;--brd:#6644aa}
+body{background:var(--bg);color:var(--wht);font-family:'Press Start 2P',monospace;font-size:11px;min-height:100vh}
+.btn{font-family:'Press Start 2P',monospace;font-size:10px;padding:9px 13px;cursor:pointer;border:3px solid;display:inline-flex;align-items:center;gap:5px;letter-spacing:.02em;transition:all .06s;user-select:none;white-space:nowrap;background:transparent}
+.btn:active{transform:translate(2px,2px)}
+.btn.g{color:var(--grn);border-color:var(--grn)}
+.btn.y{color:var(--gold);border-color:var(--gold)}
+.btn.c{color:var(--cyan);border-color:var(--cyan)}
+.btn.p{color:var(--pink);border-color:var(--pink)}
+.btn.r{color:var(--red);border-color:var(--red)}
+.btn.o{color:var(--org);border-color:var(--org)}
+.btn.sm{font-size:9px;padding:6px 9px;border-width:2px}
+.btn.lg{font-size:10px;padding:10px 14px;width:100%;justify-content:center}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+input,select{background:var(--bg3);color:var(--wht);border:2px solid var(--brd);font-family:'Press Start 2P',monospace;font-size:10px;padding:7px 9px;outline:none;width:100%}
+input:focus,select:focus{border-color:var(--cyan)}
+select option{background:var(--bg2)}
+.ovl{position:fixed;inset:0;background:rgba(10,3,22,.97);z-index:200;overflow-y:auto;padding:12px}
+.scan{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 3px)}
+@keyframes bop{0%,80%,100%{transform:scaleY(.25)}40%{transform:scaleY(1)}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--brd)}
 </style>
 </head>
 <body>
 <div class="scan"></div>
-<div id="app" style="background:#050f05;min-height:100vh;padding-bottom:2rem"></div>
+<div id="app" style="min-height:100vh;padding-bottom:65px"></div>
 <script>
-const LAT=45.71546,LON=3.18695;
-const SC='https://api.sencrop.com/v1';
-const AID='7ef37e80-4d08-11f1-a45f-53974d479410';
-const ASC='64dvIWmgUFf9XbrglDh0kb0mvB5VxrQG';
-const DEV='122872';
-const MAXMM=8;
+const LAT=45.71546,LON=3.18695,SC='https://api.sencrop.com/v1',AID='7ef37e80-4d08-11f1-a45f-53974d479410',ASC='64dvIWmgUFf9XbrglDh0kb0mvB5VxrQG',DEV='122872',MAXMM=8;
 const RATES={ca:4800/376,cg:171/15.2,ja:3500/300};
 const EF={chapelle:.8,jardin:1};
-const PROFS={reprise:'REPRISE',exploration:'EXPLOR.',maturite:'MATURE'};
-const JJ=['LUN','MAR','MER','JEU','VEN','SAM','DIM'];
-
+const PR={reprise:'REPRISE',exploration:'EXPLOR.',maturite:'MATURE'};
+const JN=['LUN','MAR','MER','JEU','VEN','SAM','DIM'];
 function iso(d){const x=new Date(d);return`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`}
 function short(s){if(!s)return'';const p=s.split('-');return`${p[2]}/${p[1]}`}
-function dow(s){return(new Date(s).getDay()+6)%7}
+function dowN(s){return(new Date(s).getDay()+6)%7}
 function lundi(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return d}
 function addD(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
 function b64(s){try{return btoa(unescape(encodeURIComponent(s)))}catch(e){return btoa(s)}}
-
 function mkC(n,ex={}){return{id:`c${n}`,name:`CHAPELLE ${n}`,type:'chapelle',irrigType:'combined',aspR:.33,gagR:.67,profile:'exploration',thr:{reprise:6,exploration:12,maturite:20},lastIrr:null,splitOf:null,isSplit:false,...ex}}
 function mkJ(l,ex={}){return{id:`j${l}`,name:`JARDIN ${l}`,type:'jardin',irrigType:'aspersion',aspR:1,gagR:0,profile:'exploration',thr:{reprise:10,exploration:22,maturite:30},lastIrr:null,splitOf:null,isSplit:false,...ex}}
 const INIT=[mkC(1),mkC(2),mkC(3),mkC(4),...['A','B','C','D','E','F','G','H','I','J'].map(l=>mkJ(l))];
-
-let STATE={zones:[...INIT],days:[],tab:'serres',editZone:null,loading:false,scStatus:'?',updated:null};
-
-function loadZones(){try{const r=localStorage.getItem('fdr-zones');if(r)STATE.zones=JSON.parse(r)}catch(e){}}
-function saveZones(){try{localStorage.setItem('fdr-zones',JSON.stringify(STATE.zones))}catch(e){}}
-
-function calcDeficit(zone,days){
-  const f=EF[zone.type];
-  const today=new Date();today.setHours(0,0,0,0);
-  const lirr=zone.lastIrr?new Date(zone.lastIrr).setHours(0,0,0,0):0;
+let S={zones:[...INIT],days:[],tab:'meteo',edit:null,loading:false,sc:'?',upd:null};
+function loadZ(){try{const r=localStorage.getItem('fdr4');if(r)S.zones=JSON.parse(r)}catch(e){}}
+function saveZ(){try{localStorage.setItem('fdr4',JSON.stringify(S.zones))}catch(e){}}
+function updZ(fn){S.zones=fn(S.zones);saveZ();render()}
+function defic(z,days){
+  const f=EF[z.type],now=new Date();now.setHours(0,0,0,0);
+  const li=z.lastIrr?new Date(z.lastIrr).setHours(0,0,0,0):0;
   let d=0;
   for(const day of days){
     const ms=new Date(day.date).setHours(0,0,0,0);
-    if(ms>today.getTime())break;
-    if(lirr&&ms<=lirr)continue;
+    if(ms>now.getTime())break;
+    if(li&&ms<=li)continue;
     d=Math.max(0,d+day.etp*f-day.rain);
   }
   return d;
 }
-function calcAlert(zone,wdays){
-  const f=EF[zone.type];const th=zone.thr[zone.profile];
-  const lirr=zone.lastIrr?new Date(zone.lastIrr).setHours(0,0,0,0):0;
+function alertDay(z,wd){
+  const f=EF[z.type],th=z.thr[z.profile];
+  const li=z.lastIrr?new Date(z.lastIrr).setHours(0,0,0,0):0;
   let d=0;
-  for(const day of wdays){
+  for(const day of wd){
     const ms=new Date(day.date).setHours(0,0,0,0);
-    if(lirr&&ms<=lirr)continue;
+    if(li&&ms<=li)continue;
     d=Math.max(0,d+day.etp*f-day.rain);
     if(d>=th)return day.date;
   }
   return null;
 }
-function calcTime(zone,deficit){
-  if(deficit<=0)return null;
-  const sess=Math.ceil(deficit/MAXMM);const mm=Math.min(deficit,MAXMM);
-  let aspMin=0,gagMin=0;
-  if(zone.type==='chapelle'){
-    const mA=mm*(zone.irrigType==='combined'?zone.aspR:zone.irrigType==='aspersion'?1:0);
-    const mG=mm*(zone.irrigType==='combined'?zone.gagR:zone.irrigType==='gag'?1:0);
-    if(mA>0)aspMin=Math.round((mA/RATES.ca)*60);
-    if(mG>0)gagMin=Math.round((mG/RATES.cg)*60);
-  }else{aspMin=Math.round((mm/RATES.ja)*60);}
-  return{sess,mm:mm.toFixed(1),aspMin,gagMin};
+function irrTime(z,def){
+  if(def<=0)return null;
+  const sess=Math.ceil(def/MAXMM),mm=Math.min(def,MAXMM);
+  let aM=0,gM=0;
+  if(z.type==='chapelle'){
+    const mA=mm*(z.irrigType==='combined'?z.aspR:z.irrigType==='aspersion'?1:0);
+    const mG=mm*(z.irrigType==='combined'?z.gagR:z.irrigType==='gag'?1:0);
+    if(mA>0)aM=Math.round(mA/RATES.ca*60);
+    if(mG>0)gM=Math.round(mG/RATES.cg*60);
+  }else aM=Math.round(mm/RATES.ja*60);
+  return{sess,mm:mm.toFixed(1),aM,gM};
 }
-
-async function fetchData(){
-  STATE.loading=true;render();
+function wdays(){const L=lundi();return S.days.filter(d=>{const dd=new Date(d.date);dd.setHours(0,0,0,0);return dd>=L&&dd<=addD(L,6)})}
+async function fetch_data(){
+  S.loading=true;render();
   try{
     const L=lundi();
-    const url=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=et0_fao_evapotranspiration,precipitation_sum&start_date=${iso(addD(L,-14))}&end_date=${iso(addD(L,6))}&timezone=Europe%2FParis`;
-    const res=await fetch(url);const data=await res.json();
-    STATE.days=data.daily.time.map((date,i)=>({date,etp:data.daily.et0_fao_evapotranspiration[i]||0,rainForecast:data.daily.precipitation_sum[i]||0,rainMeasured:null,rain:data.daily.precipitation_sum[i]||0}));
+    const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=et0_fao_evapotranspiration,precipitation_sum&start_date=${iso(addD(L,-14))}&end_date=${iso(addD(L,6))}&timezone=Europe%2FParis`);
+    const data=await res.json();
+    S.days=data.daily.time.map((date,i)=>({date,etp:data.daily.et0_fao_evapotranspiration[i]||0,rainF:data.daily.precipitation_sum[i]||0,rainM:null,rain:data.daily.precipitation_sum[i]||0}));
     try{
       const tr=await fetch(`${SC}/oauth2/token`,{method:'POST',headers:{'Authorization':'Basic '+b64(`${AID}:${ASC}`),'Content-Type':'application/json'},body:JSON.stringify({grant_type:'client_credentials',scope:'user'})});
       if(tr.ok){
-        const td=await tr.json();const token=td.access_token;
-        const mr=await fetch(`${SC}/me`,{headers:{Authorization:`Bearer ${token}`}});
-        const md=await mr.json();const uid=md.userId||md.id;
-        const sr=await fetch(`${SC}/users/${uid}/devices/${DEV}/data/daily?beforeDate=${iso(addD(L,7))}T00:00:00.000Z&days=7&measures=RAIN_FALL`,{headers:{Authorization:`Bearer ${token}`}});
+        const td=await tr.json(),tok=td.access_token;
+        const mr=await fetch(`${SC}/me`,{headers:{Authorization:`Bearer ${tok}`}});
+        const md=await mr.json(),uid=md.userId||md.id;
+        const sr=await fetch(`${SC}/users/${uid}/devices/${DEV}/data/daily?beforeDate=${iso(addD(L,7))}T00:00:00.000Z&days=7&measures=RAIN_FALL`,{headers:{Authorization:`Bearer ${tok}`}});
         if(sr.ok){
           const sd=await sr.json();
-          (sd?.measures?.data||[]).forEach((e,i)=>{
-            if(typeof e.RAIN_FALL?.value==='number'){const date=iso(addD(L,i));const idx=STATE.days.findIndex(d=>d.date===date);if(idx>=0){STATE.days[idx].rainMeasured=e.RAIN_FALL.value;STATE.days[idx].rain=e.RAIN_FALL.value;}}
-          });
-          STATE.scStatus='OK';
+          (sd?.measures?.data||[]).forEach((e,i)=>{if(typeof e.RAIN_FALL?.value==='number'){const date=iso(addD(L,i));const idx=S.days.findIndex(d=>d.date===date);if(idx>=0){S.days[idx].rainM=e.RAIN_FALL.value;S.days[idx].rain=e.RAIN_FALL.value;}}});
+          S.sc='OK';
         }
       }
-    }catch(e){STATE.scStatus='--';}
-    STATE.updated=new Date();
+    }catch(e){S.sc='--';}
+    S.upd=new Date();
   }catch(e){}
-  STATE.loading=false;render();
+  S.loading=false;render();
 }
-
-function irrigate(id){STATE.zones=STATE.zones.map(z=>z.id===id?{...z,lastIrr:new Date().toISOString()}:z);saveZones();render();}
-function splitZone(id){const z=STATE.zones.find(x=>x.id===id);if(!z||z.isSplit)return;const a={...z,id:`${id}_a`,name:`${z.name}-A`,splitOf:id};const b={...z,id:`${id}_b`,name:`${z.name}-B`,splitOf:id};STATE.zones=STATE.zones.map(x=>x.id===id?{...x,isSplit:true}:x).concat([a,b]);saveZones();render();}
-function unsplit(id){STATE.zones=STATE.zones.filter(x=>x.splitOf!==id).map(x=>x.id===id?{...x,isSplit:false}:x);saveZones();render();}
-function deleteZone(id){STATE.zones=STATE.zones.filter(x=>x.id!==id&&x.splitOf!==id);saveZones();render();}
-function addZone(type){const n=Date.now();const z=type==='chapelle'?mkC('?',{id:`cx${n}`,name:'CHAPELLE ?'}) :mkJ('?',{id:`jx${n}`,name:'JARDIN ?'});STATE.zones=[...STATE.zones,z];STATE.editZone={...z};saveZones();render();}
-function openEdit(id){STATE.editZone={...STATE.zones.find(z=>z.id===id)};render();}
-function closeEdit(){STATE.editZone=null;render();}
-function saveEdit(){const f=STATE.editZone;STATE.zones=STATE.zones.map(z=>z.id===f.id?{...f}:z);STATE.editZone=null;saveZones();render();}
-function setEF(k,v){STATE.editZone={...STATE.editZone,[k]:v};render();}
-function setET(k,v){STATE.editZone={...STATE.editZone,thr:{...STATE.editZone.thr,[k]:parseFloat(v)||0}};render();}
-
-function getWeekDays(){const L=lundi();return STATE.days.filter(d=>{const dd=new Date(d.date);dd.setHours(0,0,0,0);return dd>=L&&dd<=addD(L,6);});}
-
-function renderHeader(){
-  return`<header style="background:#0a1a0a;border-bottom:2px solid #1a3a1a;padding:10px 12px;position:sticky;top:0;z-index:50">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start">
-      <div><div class="ps2" style="font-size:.52rem;color:#00ff41">&#127807; FERME DU REBOND</div>
-      <div class="ps2" style="font-size:.3rem;color:#003311;margin-top:4px">BILAN HYDRIQUE v1.0</div></div>
-      <button class="btn" onclick="fetchData()" ${STATE.loading?'disabled':''}>&#8635; SYNC</button>
-    </div>
-    ${STATE.updated?`<div style="font-size:.8rem;color:#003311;margin-top:3px">MAJ ${STATE.updated.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})} &nbsp;|&nbsp; SENCROP: <span style="color:${STATE.scStatus==='OK'?'#00ff41':'#ff8800'}">${STATE.scStatus==='OK'?'&#9632; OK':'&#9632; --'}</span></div>`:''}
-  </header>`;}
-
-function renderWeather(wdays){
+function irrigate(id){updZ(z=>z.map(x=>x.id===id?{...x,lastIrr:new Date().toISOString()}:x))}
+function splitZ(id){const z=S.zones.find(x=>x.id===id);if(!z||z.isSplit)return;updZ(prev=>[...prev.map(x=>x.id===id?{...x,isSplit:true}:x),{...z,id:`${id}_a`,name:`${z.name}-A`,splitOf:id},{...z,id:`${id}_b`,name:`${z.name}-B`,splitOf:id}])}
+function unsplit(id){updZ(z=>z.filter(x=>x.splitOf!==id).map(x=>x.id===id?{...x,isSplit:false}:x))}
+function delZ(id){updZ(z=>z.filter(x=>x.id!==id&&x.splitOf!==id))}
+function addZ(type){const n=Date.now();const z=type==='chapelle'?mkC('?',{id:`cx${n}`,name:'CHAPELLE ?'}):mkJ('?',{id:`jx${n}`,name:'JARDIN ?'});S.zones=[...S.zones,z];saveZ();S.edit={...z};render()}
+function openEdit(id){S.edit={...S.zones.find(z=>z.id===id)};render()}
+function closeEdit(){S.edit=null;render()}
+function saveEdit(){updZ(z=>z.map(x=>x.id===S.edit.id?{...S.edit}:x));S.edit=null;render()}
+function sEF(k,v){S.edit={...S.edit,[k]:v};render()}
+function sET(k,v){S.edit={...S.edit,thr:{...S.edit.thr,[k]:parseFloat(v)||0}};render()}
+function hdr(){return`<header style="background:#2d1b4e;border-bottom:4px solid #6644aa;padding:12px 14px;position:sticky;top:0;z-index:50"><div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;color:var(--gold)">&#9827; FERME DU REBOND</div><div style="font-size:9px;color:var(--dim);margin-top:5px">BILAN HYDRIQUE v2.0</div></div><button class="btn c" onclick="fetch_data()" ${S.loading?'disabled':''}>&#8635; SYNC</button></div>${S.upd?`<div style="font-size:9px;color:var(--dim);margin-top:5px;display:flex;gap:14px"><span>MAJ ${S.upd.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</span><span>SENCROP: <span style="color:${S.sc==='OK'?'var(--grn)':'var(--org)'}">${S.sc==='OK'?'&#9632; OK':'&#9632; --'}</span></span></div>`:''}</header>`}
+function tabBar(){const tabs=[['meteo','&#9728; MÉTÉO'],['serres','&#9827; SERRES'],['jardins','&#9670; JARDINS']];return`<div style="position:fixed;bottom:0;left:0;right:0;display:flex;background:#2d1b4e;border-top:4px solid #6644aa;z-index:50">${tabs.map(([t,l])=>`<button onclick="S.tab='${t}';render()" style="flex:1;padding:11px 4px;font-family:'Press Start 2P',monospace;font-size:9px;background:${S.tab===t?'#1a0a2e':'transparent'};color:${S.tab===t?'var(--gold)':'var(--dim)'};border:none;border-top:${S.tab===t?'3px solid var(--gold)':'3px solid transparent'};cursor:pointer">${l}</button>`).join('')}</div>`}
+function meteoPage(){
+  const wd=wdays();
+  if(S.loading&&S.days.length===0)return`<div style="text-align:center;padding:3rem 1rem"><div style="font-size:11px;color:var(--cyan);margin-bottom:16px;animation:blink 1s infinite">CHARGEMENT...</div><div style="display:flex;gap:8px;justify-content:center">${[0,1,2].map(i=>`<div style="width:12px;height:12px;background:var(--cyan);animation:bop .8s ${i*.2}s infinite"></div>`).join('')}</div></div>`;
   const today=new Date();today.setHours(0,0,0,0);
-  const tE=wdays.reduce((s,d)=>s+d.etp,0),tR=wdays.reduce((s,d)=>s+d.rainForecast,0),tB=wdays.reduce((s,d)=>s+(d.rain-d.etp),0);
-  const bc=tB>=0?'#00ff41':'#ff2222';
-  return`<div style="background:#0a1a0a;border-bottom:2px solid #1a3a1a;padding:8px 12px">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:8px">
-      ${[['ETP SEM.',tE.toFixed(1)+'mm','#ff8800'],['PLUIE PR.',tR.toFixed(1)+'mm','#00aaff'],['BILAN',(tB>=0?'+':'')+tB.toFixed(1)+'mm',bc]].map(([l,v,c])=>`
-      <div style="border:1px solid #1a3a1a;padding:4px 2px;text-align:center;background:#050f05">
-        <div class="ps2" style="font-size:.26rem;color:#003311;margin-bottom:2px">${l}</div>
-        <div style="font-size:1.1rem;color:${c}">${v}</div>
-      </div>`).join('')}
-    </div>
-    <div style="display:flex;gap:3px;overflow-x:auto;padding-bottom:2px">
-      ${wdays.map((day,i)=>{const dd=new Date(day.date);dd.setHours(0,0,0,0);const isT=dd.getTime()===today.getTime();const isP=dd<today;const rain=day.rainMeasured!==null?day.rainMeasured:day.rainForecast;const bil=rain-day.etp;return`<div style="min-width:36px;text-align:center;padding:3px 2px;flex-shrink:0;border:1px solid ${isT?'#00ff41':'#1a3a1a'};background:${isT?'#0a2a0a':'#050f05'};opacity:${isP?.7:1}"><div class="ps2" style="font-size:.26rem;color:#003311">${JJ[i]}</div><div style="font-size:.9rem;color:#ff8800">${day.etp.toFixed(1)}</div><div style="font-size:.9rem;color:${day.rainMeasured!==null?'#00aaff':'#005577'}">${rain.toFixed(1)}${day.rainMeasured===null?'<span style="font-size:.7rem;opacity:.5">~</span>':''}</div><div style="font-size:.8rem;color:${bil>=0?'#00ff41':'#ff2222'}">${bil>=0?'+':''} ${bil.toFixed(1)}</div></div>`;}).join('')}
-    </div>
-    <div style="font-size:.7rem;color:#002211;margin-top:3px">ETP / PLUIE~ / NET (mm)</div>
-  </div>`;}
-
-function renderZone(zone,wdays){
-  if(zone.isSplit&&!zone.splitOf)return'';
-  const def=calcDeficit(zone,STATE.days),th=zone.thr[zone.profile],pct=Math.min(100,(def/th)*100);
-  const ad=calcAlert(zone,wdays),ii=calcTime(zone,def);
-  const urg=def>=th?'crit':def>=th*.7?'warn':'ok';
-  const UC={crit:'#ff2222',warn:'#ff8800',ok:'#00ff41'}[urg];
-  const BC={crit:'pbr',warn:'pbo',ok:'pbg'}[urg];
-  const il=zone.type==='chapelle'?(zone.irrigType==='combined'?`ASP${Math.round(zone.aspR*100)}+G${Math.round(zone.gagR*100)}`:zone.irrigType.toUpperCase()):'ASPERSEUR';
-  const canDel=zone.id.startsWith('cx')||zone.id.startsWith('jx')||zone.splitOf;
-  const alertBox=urg==='crit'?`<div style="background:#200000;border:1px solid #ff2222;padding:5px;margin-bottom:5px;font-size:.85rem;color:#ff2222">&#9658;&#9658; IRRIGUER MAINTENANT &#9668;&#9668;</div>`:ad?`<div style="background:#1a1000;border:1px solid #ff8800;padding:5px;margin-bottom:5px;font-size:.85rem;color:#ff8800">&#9889; IRRIGUER ${JJ[dow(ad)]} ${short(ad)}</div>`:`<div style="background:#050f05;border:1px solid #1a3a1a;padding:5px;margin-bottom:5px;font-size:.85rem;color:#003311">&#10003; OK CETTE SEMAINE</div>`;
-  const irrBox=ii?`<div style="background:#050f05;border:1px solid #1a3a1a;padding:5px;margin-bottom:5px;font-size:.85rem">${ii.sess>1?`<span style="color:#ffdd00">${ii.sess}x ${ii.mm}mm/s | </span>`:''}${ii.aspMin>0?`<span style="color:#00aaff">ASP ${ii.aspMin}min </span>`:''}${ii.gagMin>0?`<span style="color:#00ff99">G&#224;G ${ii.gagMin}min</span>`:''}</div>`:'';
-  return`<div class="${BC}" style="background:#0a1a0a;margin-bottom:8px;padding:8px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
-      <span class="ps2" style="font-size:.4rem;color:${UC}">${zone.name}${zone.splitOf?'<span style="font-size:.7rem;color:#003311;margin-left:5px">&#189;</span>':''}</span>
-      <button class="btn sm" onclick="openEdit('${zone.id}')">&#9881;</button>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:2px">
-      <span style="color:#003311">DEF: <span style="color:${UC}">${def.toFixed(1)}mm</span></span>
-      <span style="color:#003311">SEUIL: <span style="color:#ffdd00">${th}mm</span></span>
-    </div>
-    <div style="height:10px;background:#050f05;border:1px solid #1a3a1a;margin-bottom:5px;position:relative">
-      <div style="height:100%;width:${pct}%;background:${UC};transition:width .4s"></div>
-      ${[25,50,75].map(p=>`<div style="position:absolute;top:0;left:${p}%;width:1px;height:100%;background:#1a3a1a"></div>`).join('')}
-    </div>
-    <div style="font-size:.8rem;color:#003311;margin-bottom:5px;display:flex;gap:8px;flex-wrap:wrap">
-      <span>PROFIL: <span style="color:#ffdd00">${PROFS[zone.profile]}</span></span>
-      ${zone.lastIrr?`<span>IRR: <span style="color:#00ff41">${short(zone.lastIrr.split('T')[0])}</span></span>`:''}
-      <span style="color:#003311">${il}</span>
-    </div>
-    ${alertBox}${irrBox}
-    <div style="display:flex;gap:4px;flex-wrap:wrap">
-      <button class="btn ${urg==='crit'?'r':'o'}" onclick="irrigate('${zone.id}')">&#128167; IRRIGU&#201;</button>
-      ${zone.type==='chapelle'&&!zone.splitOf&&!zone.isSplit?`<button class="btn b sm" onclick="splitZone('${zone.id}')">&#9889; SCINDER</button>`:''}
-      ${zone.splitOf?`<button class="btn sm" onclick="unsplit('${zone.splitOf}')">&#8617; FUSIONNER</button>`:''}
-      ${canDel?`<button class="btn r sm" onclick="deleteZone('${zone.id}')">&#10005;</button>`:''}
-    </div>
-  </div>`;}
-
-function renderModal(){
-  const f=STATE.editZone;
-  return`<div class="modal-bg" onclick="if(event.target===this)closeEdit()">
-    <div class="pbg" style="max-width:360px;margin:0 auto;background:#0a1a0a;padding:14px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <span class="ps2" style="font-size:.42rem;color:#00ff41">&#9881; CONFIG</span>
-        <button class="btn r sm" onclick="closeEdit()">&#10005;</button>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:9px">
-        <div><div class="ps2" style="font-size:.3rem;color:#003311;margin-bottom:3px">NOM</div><input value="${f.name}" oninput="setEF('name',this.value)"></div>
-        <div><div class="ps2" style="font-size:.3rem;color:#003311;margin-bottom:3px">PROFIL ACTIF</div>
-          <select onchange="setEF('profile',this.value)">
-            <option value="reprise" ${f.profile==='reprise'?'selected':''}>REPRISE / SEMIS</option>
-            <option value="exploration" ${f.profile==='exploration'?'selected':''}>EXPLORATION</option>
-            <option value="maturite" ${f.profile==='maturite'?'selected':''}>MATURIT&#201;</option>
-          </select></div>
-        <div style="border:1px solid #1a3a1a;padding:7px">
-          <div class="ps2" style="font-size:.3rem;color:#003311;margin-bottom:7px">SEUILS PAR PROFIL (mm)</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
-            ${['reprise','exploration','maturite'].map(p=>`<div><div style="font-size:.8rem;color:#003311;margin-bottom:2px">${PROFS[p]}</div><input type="number" min="1" max="100" value="${f.thr[p]}" style="text-align:center" oninput="setET('${p}',this.value)"></div>`).join('')}
-          </div>
-        </div>
-        ${f.type==='chapelle'?`
-        <div><div class="ps2" style="font-size:.3rem;color:#003311;margin-bottom:3px">IRRIGATION</div>
-          <select onchange="setEF('irrigType',this.value)">
-            <option value="aspersion" ${f.irrigType==='aspersion'?'selected':''}>ASPERSION SEULE</option>
-            <option value="gag" ${f.irrigType==='gag'?'selected':''}>G&#192;G SEUL</option>
-            <option value="combined" ${f.irrigType==='combined'?'selected':''}>ASP + G&#192;G</option>
-          </select></div>
-        ${f.irrigType==='combined'?`
-        <div style="border:1px solid #1a3a1a;padding:7px">
-          <div class="ps2" style="font-size:.3rem;color:#003311;margin-bottom:7px">RATIO ASP / G&#192;G (%)</div>
-          <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center">
-            <div><div style="font-size:.8rem;color:#00aaff;margin-bottom:2px">ASP</div>
-              <input type="number" min="0" max="100" value="${Math.round(f.aspR*100)}" style="text-align:center" oninput="const v=Math.min(100,Math.max(0,parseInt(this.value)||0));setEF('aspR',v/100);setEF('gagR',(100-v)/100)"></div>
-            <span style="color:#003311;font-size:1.2rem">/</span>
-            <div><div style="font-size:.8rem;color:#00ff99;margin-bottom:2px">G&#192;G</div>
-              <input type="number" min="0" max="100" value="${Math.round(f.gagR*100)}" style="text-align:center" oninput="const v=Math.min(100,Math.max(0,parseInt(this.value)||0));setEF('gagR',v/100);setEF('aspR',(100-v)/100)"></div>
-          </div>
-          <div style="height:8px;background:#050f05;border:1px solid #1a3a1a;margin-top:7px;display:flex">
-            <div style="width:${f.aspR*100}%;background:#00aaff;transition:width .2s"></div>
-            <div style="flex:1;background:#00ff99"></div>
-          </div>
-        </div>`:''}`:''}
-        <button class="btn lg y" onclick="saveEdit()">&#128190; SAUVEGARDER</button>
-      </div>
-    </div>
-  </div>`;}
-
-function render(){
-  const wdays=getWeekDays();
-  const visible=STATE.zones.filter(z=>STATE.tab==='serres'?(z.type==='chapelle'&&(!z.isSplit||z.splitOf!==null)):z.type==='jardin');
-  const addType=STATE.tab==='serres'?'chapelle':'jardin';
-  document.getElementById('app').innerHTML=`
-    ${renderHeader()}
-    ${STATE.days.length>0?renderWeather(wdays):''}
-    <div style="display:flex;border-bottom:2px solid #1a3a1a;background:#0a1a0a">
-      ${['serres','jardins'].map(t=>`<button onclick="STATE.tab='${t}';render()" style="flex:1;padding:10px;font-family:'Press Start 2P',monospace;font-size:.38rem;background:${STATE.tab===t?'#050f05':'#0a1a0a'};color:${STATE.tab===t?'#00ff41':'#1a3a1a'};border:none;border-bottom:${STATE.tab===t?'2px solid #00ff41':'none'};cursor:pointer">${t==='serres'?'&#127807;':'&#127795;'} ${t.toUpperCase()}</button>`).join('')}
-    </div>
-    <div style="padding:10px">
-      ${STATE.loading&&STATE.days.length===0?`<div style="text-align:center;padding:2.5rem;font-family:'Press Start 2P',monospace;font-size:.45rem;color:#003311">CHARGEMENT<br><br><div style="display:flex;gap:6px;justify-content:center;margin-top:8px">${[0,1,2].map(i=>`<div style="width:8px;height:8px;background:#00ff41;animation:bounce .9s ${i*.2}s infinite"></div>`).join('')}</div></div>`:visible.map(z=>renderZone(z,wdays)).join('')}
-      <button class="btn b" style="margin-top:8px" onclick="addZone('${addType}')">+ AJOUTER ${addType==='chapelle'?'CHAPELLE':'JARDIN'}</button>
-    </div>
-    ${STATE.editZone?renderModal():''}
-  `;}
-
-loadZones();render();fetchData();
-
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  const tE=wd.reduce((s,d)=>s+d.etp,0),tR=wd.reduce((s,d)=>s+d.rainF,0),tB=wd.reduce((s,d)=>s+(d.rain-d.etp),0),tM=wd.filter(d=>d.rainM!==null).reduce((s,d)=>s+d.rainM,0);
+  return`<div style="padding:14px"><div style="font-size:11px;color:var(--gold);margin-bottom:12px;border-bottom:2px solid var(--brd);padding-bottom:8px">&#9728; SEMAINE EN COURS</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px">${[['ETP TOTAL','var(--org)',tE.toFixed(1)+' mm','PRÉVISION'],['PLUIE PRÉV.','var(--cyan)',tR.toFixed(1)+' mm','OPEN-METEO'],['PLUIE RÉELLE','#00ccff',tM.toFixed(1)+' mm','SENCROP'],['BILAN NET',tB>=0?'var(--grn)':'var(--red)',(tB>=0?'+':'')+tB.toFixed(1)+' mm',tB>=0?'EXCÉDENT':'DÉFICIT']].map(([l,c,v,sub])=>`<div style="background:var(--bg2);border:3px solid var(--brd);padding:12px"><div style="font-size:9px;color:var(--dim);margin-bottom:6px">${l}</div><div style="font-size:18px;color:${c}">${v}</div><div style="font-size:8px;color:var(--dim);margin-top:4px">${sub}</div></div>`).join('')}</div><div style="font-size:11px;color:var(--gold);margin-bottom:10px">&#9616; DÉTAIL PAR JOUR</div><div style="background:var(--bg2);border:3px solid var(--brd);overflow:hidden"><div style="display:grid;grid-template-columns:1fr 52px 52px 58px;background:var(--bg3);padding:8px 10px;border-bottom:2px solid var(--brd)">${['JOUR','ETP','PLUIE','BILAN'].map(h=>`<div style="font-size:9px;color:var(--dim);text-align:center">${h}</div>`).join('')}</div>${wd.map((day,i)=>{const dd=new Date(day.date);dd.setHours(0,0,0,0);const isT=dd.getTime()===today.getTime(),isP=dd<today;const rain=day.rainM!==null?day.rainM:day.rainF;const bil=rain-day.etp,bc=bil>=0?'var(--grn)':'var(--red)';return`<div style="display:grid;grid-template-columns:1fr 52px 52px 58px;padding:9px 10px;border-bottom:1px solid var(--brd);background:${isT?'#3d2860':'transparent'};opacity:${isP&&!isT?.75:1}"><div><div style="font-size:10px;color:${isT?'var(--gold)':'var(--wht)'}">${JN[i]}${isT?' &#9654;':''}</div><div style="font-size:8px;color:var(--dim);margin-top:3px">${short(day.date)}</div></div><div style="font-size:13px;color:var(--org);text-align:center;line-height:2.2">${day.etp.toFixed(1)}</div><div style="font-size:13px;color:${day.rainM!==null?'var(--cyan)':'#0077aa'};text-align:center;line-height:2.2">${rain.toFixed(1)}${!day.rainM?'<span style="font-size:9px;opacity:.5">~</span>':''}</div><div style="font-size:13px;color:${bc};text-align:center;line-height:2.2">${bil>=0?'+':''}${bil.toFixed(1)}</div></div>`;}).join('')}<div style="display:grid;grid-template-columns:1fr 52px 52px 58px;padding:9px 10px;background:var(--bg3)"><div style="font-size:9px;color:var(--dim)">TOTAL</div><div style="font-size:13px;color:var(--org);text-align:center">${tE.toFixed(1)}</div><div style="font-size:13px;color:var(--cyan);text-align:center">${tR.toFixed(1)}</div><div style="font-size:13px;color:${tB>=0?'var(--grn)':'var(--red)'};text-align:center">${tB>=0?'+':''}${tB.toFixed(1)}</div></div></div><div style="font-size:8px;color:var(--dim);margin-top:8px">~ = PRÉVISION &nbsp;|&nbsp; SANS ~ = MESURÉ SENCROP</div></div>`;
 }
+function zoneCard(z,wd){
+  if(z.isSplit&&!z.splitOf)return'';
+  const def=defic(z,S.days),th=z.thr[z.profile],pct=Math.min(100,def/th*100);
+  const ad=alertDay(z,wd),ii=irrTime(z,def);
+  const urg=def>=th?'crit':def>=th*.7?'warn':'ok';
+  const UC={crit:'var(--red)',warn:'var(--org)',ok:'var(--grn)'}[urg];
+  const BC={crit:'var(--red)',warn:'var(--org)',ok:'var(--brd)'}[urg];
+  const il=z.type==='chapelle'?(z.irrigType==='combined'?`ASP${Math.round(z.aspR*100)}+G${Math.round(z.gagR*100)}`:z.irrigType.toUpperCase()):'ASP';
+  const canDel=z.id.startsWith('cx')||z.id.startsWith('jx')||z.splitOf;
+  return`<div style="background:var(--bg2);border:3px solid ${BC};margin-bottom:12px;padding:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px"><div style="font-size:12px;color:${UC}">${z.name}${z.splitOf?'<span style="font-size:9px;color:var(--dim)"> &#189;</span>':''}</div><button class="btn sm c" onclick="openEdit('${z.id}')">&#9881;</button></div><div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:5px"><span style="color:var(--dim)">DEF: <span style="color:${UC}">${def.toFixed(1)}mm</span></span><span style="color:var(--dim)">SEUIL: <span style="color:var(--gold)">${th}mm</span></span></div><div style="height:14px;background:var(--bg);border:2px solid var(--brd);margin-bottom:8px;position:relative"><div style="height:100%;width:${pct}%;background:${UC};transition:width .3s"></div>${[25,50,75].map(p=>`<div style="position:absolute;top:0;left:${p}%;width:1px;height:100%;background:var(--brd)"></div>`).join('')}</div><div style="font-size:9px;color:var(--dim);margin-bottom:9px;display:flex;gap:12px;flex-wrap:wrap"><span>PROFIL: <span style="color:var(--gold)">${PR[z.profile]}</span></span>${z.lastIrr?`<span>IRR: <span style="color:var(--grn)">${short(z.lastIrr.split('T')[0])}</span></span>`:''}<span>${il}</span></div>${urg==='crit'?`<div style="background:#3a0000;border:2px solid var(--red);padding:8px;margin-bottom:9px;font-size:10px;color:var(--red);animation:blink 1s infinite">&#9658;&#9658; IRRIGUER MAINTENANT &#9668;&#9668;</div>`:ad?`<div style="background:#2a1400;border:2px solid var(--org);padding:8px;margin-bottom:9px;font-size:10px;color:var(--org)">&#9889; IRRIGUER ${JN[dowN(ad)]} ${short(ad)}</div>`:`<div style="background:var(--bg);border:2px solid var(--brd);padding:8px;margin-bottom:9px;font-size:10px;color:var(--dim)">&#10003; OK CETTE SEMAINE</div>`}${ii?`<div style="background:var(--bg);border:2px solid var(--brd);padding:8px;margin-bottom:9px;font-size:9px">${ii.sess>1?`<span style="color:var(--gold)">${ii.sess}x ${ii.mm}mm/s. | </span>`:''}${ii.aM>0?`<span style="color:var(--cyan)">ASP ${ii.aM}min </span>`:''}${ii.gM>0?`<span style="color:var(--pink)">GÀG ${ii.gM}min</span>`:''}</div>`:''}<div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn ${urg==='crit'?'r':'o'}" onclick="irrigate('${z.id}')">&#128167; IRRIGUÉ</button>${z.type==='chapelle'&&!z.splitOf&&!z.isSplit?`<button class="btn c sm" onclick="splitZ('${z.id}')">&#9889; SCINDER</button>`:''}${z.splitOf?`<button class="btn sm y" onclick="unsplit('${z.splitOf}')">&#8617; FUSIONNER</button>`:''}${canDel?`<button class="btn r sm" onclick="delZ('${z.id}')">&#10005;</button>`:''}</div></div>`;
+}
+function zonesPage(type){
+  const wd=wdays();
+  const visible=S.zones.filter(z=>z.type===type&&(!z.isSplit||z.splitOf!==null));
+  const alerts=visible.filter(z=>!z.isSplit&&alertDay(z,wd));
+  const icon=type==='chapelle'?'&#9827;':'&#9670;';
+  const lbl=type==='chapelle'?'SERRES':'JARDINS';
+  return`<div style="padding:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:2px solid var(--brd);padding-bottom:8px"><div style="font-size:11px;color:var(--gold)">${icon} ${lbl}</div>${alerts.length>0?`<div style="font-size:9px;color:var(--red);animation:blink 1s infinite">&#9888; ${alerts.length} ALERTE${alerts.length>1?'S':''}</div>`:''}</div>${S.loading&&S.days.length===0?`<div style="text-align:center;padding:2rem;font-size:10px;color:var(--dim)">CHARGEMENT...</div>`:visible.map(z=>zoneCard(z,wd)).join('')}<button class="btn c" onclick="addZ('${type}')">+ AJOUTER ${type==='chapelle'?'CHAPELLE':'JARDIN'}</button></div>`;
+}
+function editModal(){
+  const f=S.edit;
+  return`<div class="ovl" onclick="if(event.target===this)closeEdit()"><div style="background:var(--bg2);border:3px solid var(--cyan);max-width:360px;margin:0 auto;padding:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:12px;color:var(--cyan)">&#9881; CONFIG</div><button class="btn r sm" onclick="closeEdit()">&#10005;</button></div><div style="display:flex;flex-direction:column;gap:12px"><div><div style="font-size:9px;color:var(--dim);margin-bottom:5px">NOM</div><input value="${f.name}" oninput="sEF('name',this.value)"></div><div><div style="font-size:9px;color:var(--dim);margin-bottom:5px">PROFIL ACTIF</div><select onchange="sEF('profile',this.value)"><option value="reprise" ${f.profile==='reprise'?'selected':''}>REPRISE / SEMIS</option><option value="exploration" ${f.profile==='exploration'?'selected':''}>EXPLORATION</option><option value="maturite" ${f.profile==='maturite'?'selected':''}>MATURITÉ</option></select></div><div style="border:2px solid var(--brd);padding:10px"><div style="font-size:9px;color:var(--dim);margin-bottom:9px">SEUILS PAR PROFIL (mm)</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">${['reprise','exploration','maturite'].map(p=>`<div><div style="font-size:8px;color:var(--dim);margin-bottom:4px">${PR[p]}</div><input type="number" min="1" max="100" value="${f.thr[p]}" style="text-align:center" oninput="sET('${p}',this.value)"></div>`).join('')}</div></div>${f.type==='chapelle'?`<div><div style="font-size:9px;color:var(--dim);margin-bottom:5px">IRRIGATION</div><select onchange="sEF('irrigType',this.value)"><option value="aspersion" ${f.irrigType==='aspersion'?'selected':''}>ASPERSION SEULE</option><option value="gag" ${f.irrigType==='gag'?'selected':''}>GÀG SEUL</option><option value="combined" ${f.irrigType==='combined'?'selected':''}>ASP + GÀG</option></select></div>${f.irrigType==='combined'?`<div style="border:2px solid var(--brd);padding:10px"><div style="font-size:9px;color:var(--dim);margin-bottom:9px">RATIO ASP / GÀG (%)</div><div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center"><div><div style="font-size:9px;color:var(--cyan);margin-bottom:4px">ASP</div><input type="number" min="0" max="100" value="${Math.round(f.aspR*100)}" style="text-align:center" oninput="const v=Math.min(100,Math.max(0,parseInt(this.value)||0));sEF('aspR',v/100);sEF('gagR',(100-v)/100)"></div><span style="color:var(--dim);font-size:14px">/</span><div><div style="font-size:9px;color:var(--pink);margin-bottom:4px">GÀG</div><input type="number" min="0" max="100" value="${Math.round(f.gagR*100)}" style="text-align:center" oninput="const v=Math.min(100,Math.max(0,parseInt(this.value)||0));sEF('gagR',v/100);sEF('aspR',(100-v)/100)"></div></div><div style="height:10px;background:var(--bg);border:1px solid var(--brd);margin-top:9px;display:flex"><div style="width:${f.aspR*100}%;background:var(--cyan);transition:width .2s"></div><div style="flex:1;background:var(--pink)"></div></div></div>`:''}`:''}
+        <button class="btn lg y" onclick="saveEdit()">&#128190; SAUVEGARDER</button>
+      </div></div></div>`;
+}
+function render(){
+  let page='';
+  if(S.tab==='meteo')page=meteoPage();
+  else if(S.tab==='serres')page=zonesPage('chapelle');
+  else page=zonesPage('jardin');
+  document.getElementById('app').innerHTML=hdr()+page+tabBar()+(S.edit?editModal():'');
+}
+loadZ();render();fetch_data();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 </script>
 </body>
 </html>
